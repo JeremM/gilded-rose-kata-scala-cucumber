@@ -4,7 +4,7 @@ Feature: Standard evolution feature
   - At the end of each day our system lowers both values for every item
   - Once the sell by date has passed, Quality degrades twice as fast
   - The Quality of an item is never negative
-  - "Aged Brie" actually increases in Quality the older it gets
+  - "Aged Brie" actually increases in Quality the older it gets. It increase of 2 after sellIn date
   - The Quality of an item is never more than 50
   - "Sulfuras", being a legendary item, never has to be sold or decreases  in Quality
   - "Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches;
@@ -48,16 +48,16 @@ Feature: Standard evolution feature
       | Sword of tempest |  -3         | 0        |
 
   @StandardFeature
-  Scenario: "Aged Brie" actually increases in Quality the older it gets
+  Scenario: "Aged Brie" actually increases in Quality the older it gets. It increase of 2 after sellIn date
     Given I have the following items
       | name                  | SellIn     | Quality  |
       | Aslak                 | 5          | 12       |
       | Aged Brie             | 5          | 4        |
-    When 3 days passes
+    When 6 days passes
     Then I can verify that I have the following items
       | name             | SellIn      | Quality  |
-      | Aslak            |   2         | 9        |
-      | Aged Brie        |   2         | 7        |
+      | Aslak            |   -1        | 5        |
+      | Aged Brie        |   -1        | 11       |
 
   @StandardFeature
   Scenario: The Quality of an item is never more than 50
